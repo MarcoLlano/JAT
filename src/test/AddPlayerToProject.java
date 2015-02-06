@@ -26,7 +26,7 @@ public class AddPlayerToProject {
 		mainboard.setPlayerEmail(playerEmail);
 		mainboard.setPlayerRol(playerRole);
 		mainboard.clickSavePlayerBtn();
-		Assert.assertTrue(mainboard.getPlayerFromProject().contains(playerEmail));
+		Assert.assertTrue(mainboard.getPlayerFromProject(playerEmail).contains(playerEmail));
 	}
 
 	@AfterTest

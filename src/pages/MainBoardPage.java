@@ -28,8 +28,8 @@ public class MainBoardPage {
 	By playerRoleComboBoxLocator = By.xpath("//div[@id='addPlayer']/div/form/div[2]/select");
 	By playerRoleName = By.xpath("//div[@id='addPlayer']/div/form/div[2]/select/option[2]");
 	By savePlayerBtnLocator = By.xpath("//button[@type='submit']");
-	By storedPlayerInPlayers = By.xpath("//div[@id='playersContent']/div/div[2]/div[4]");
-	By storedTasksInUserStory = By.xpath("//div[7]/div/div[1]/div/div/div/div/div/div/div[1]/div/div");
+	By storedPlayerInPlayers = By.xpath("//div[@id='playersContent']/div/div[2]");
+	//By storedTasksInUserStory = By.xpath("//div[7]/div/div[1]/div/div/div/div/div/div/div[1]/div/div");
 
 	/**
 	 * Constructor method
@@ -123,6 +123,10 @@ public class MainBoardPage {
 	 * Method to insert tasks into user stories
 	 * @param tasks
 	 */
+	public void addTask(String task) {
+		setTaskForUserStory(task);
+		clickAddTaskButton();
+	}
 	public void setTaskForUserStory(String tasks) {
 		driver.findElement(taskFieldInUserStoryLocator).sendKeys(tasks);
 	}	
@@ -150,14 +154,14 @@ public class MainBoardPage {
 	/**
 	 * Method to get tasks from user story in icebox
 	 */
-	public String getTasksFromUserStory(){
-		return driver.findElement(storedTasksInUserStory).getText();
+	public String getTasksFromUserStory(String task){
+		return driver.findElement(By.xpath("//descendant::*/label[contains(text(),'"+task+"')]")).getText();
 	}
 
 	/**
 	 * Method to get players from projects
 	 */
-	public String getPlayerFromProject() {
-		return driver.findElement(storedPlayerInPlayers).getText();
+	public String getPlayerFromProject(String playerEmail) {
+		return driver.findElement(By.xpath("//div[@id='playersContent']/div/div[2]/descendant::*/div[contains(text(),'"+playerEmail+"')]")).getText();
 	}
 }
