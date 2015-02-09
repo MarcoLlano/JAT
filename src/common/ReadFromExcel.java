@@ -8,20 +8,13 @@ import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+
 /**
- *
+ *This class read all files in excel file then save it to memory for further use
  * @author marco llano
  *
  */
-public class ReadFromExcel {
-	/**
-	 * this method read all files in excel file then save it to memory for further use
-	 * @param filePath
-	 * @param fileName
-	 * @param sheetName
-	 * @return
-	 * @throws IOException
-	 */
+public class ReadFromExcel {	
 	@SuppressWarnings("resource")
 	public Object[][] readExcel(String filePath,String fileName,String sheetName) throws IOException {
 		File file = new File(filePath + "\\" + fileName);

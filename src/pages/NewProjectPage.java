@@ -5,10 +5,11 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import common.SeleniumDriverManager;
+
 /**
- * 
- * @author marco llano
  * This is the form where the user will create projects, is located in DashboardPage.
+ * @author marco llano
+ * 
  */
 public class NewProjectPage {
 	WebDriver driver;
@@ -17,12 +18,11 @@ public class NewProjectPage {
 	By clickSaveProjectButton = By.xpath(".//*[@id='newProjectForm']/div[2]/div/div/button[1]");
 
 	/**
-	 * Constructor method
+	 * Constructor method to initialize the driver and wait
 	 */
-	public NewProjectPage(String title) {
+	public NewProjectPage() {
 		driver = SeleniumDriverManager.getManager().getDriver();
 		wait = SeleniumDriverManager.getManager().getWait();
-		createNewProject(title);
 	}
 
 	/**

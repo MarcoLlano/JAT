@@ -6,33 +6,33 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import common.SeleniumDriverManager;
+
 /**
- * 
- * @author marco llano
  * This is the page where all the User Stories will be, that's why it calls Main.
+ * @author marco llano
+ * 
  */
 public class MainBoardPage {
 	WebDriver driver;
 	WebDriverWait wait;	
-	By saveUserStoryBtnLocator = By.xpath(".//*[@id='createUS']");
-	By addUserStoryBtnLocator = By.xpath(".//*[@id='newUserStory_link']");
+	By userStorySaveBtnLocator = By.xpath(".//*[@id='createUS']");
+	By userStoryAddBtnLocator = By.xpath(".//*[@id='newUserStory_link']");
 	By userStoryTitleLocator = By.xpath(".//*[@id='us-title']");	
-	By deleteUserStoryBtnLocator = By.xpath("//div[2]/div/div/form/div[2]");
+	By userStoryDeleteBtnLocator = By.xpath("//div[2]/div/div/form/div[2]");
 	By popupYesBtnLocator = By.xpath("//li/div/div[2]/button[1]");
 	By dashboardBtnLocator = By.xpath("//div[1]/div/div[2]/div/a");
-	By expandUserStoryBtnLocator = By.xpath(".//*[@ng-click ='loadUS(userStory)']");
-	By taskFieldInUserStoryLocator = By.xpath("//div/div/div/textarea");
-	By addTaskBtnLocator = By.xpath("(//button[@type='button'])[4]");
+	By userStoryExpandBtnLocator = By.xpath(".//*[@ng-click ='loadUS(userStory)']");
+	By taskDescriptionTextBoxLocator = By.xpath("//div/div/div/textarea");
+	By taskAddBtnLocator = By.xpath("(//button[@type='button'])[4]");
 	By addPlayerBtnLocator = By.xpath("//div[@id='playersContent']/div/div/a[3]");
-	By setPlayerEmailLocator = By.xpath("//input[@id='player-emailPlayer']");
+	By playerEmailTextBoxLocator = By.xpath("//input[@id='player-emailPlayer']"); 
 	By playerRoleComboBoxLocator = By.xpath("//div[@id='addPlayer']/div/form/div[2]/select");
-	By playerRoleName = By.xpath("//div[@id='addPlayer']/div/form/div[2]/select/option[2]");
 	By savePlayerBtnLocator = By.xpath("//button[@type='submit']");
-	By storedPlayerInPlayers = By.xpath("//div[@id='playersContent']/div/div[2]");
-	//By storedTasksInUserStory = By.xpath("//div[7]/div/div[1]/div/div/div/div/div/div/div[1]/div/div");
+	By expandPlayerBtnLocator = By.xpath("//div[@id='accordion2']/div/div/div");
+	By deletePlayerBtnLocator = By.xpath("//div[3]/div/div[2]/div/div[3]");
 
 	/**
-	 * Constructor method
+	 * Constructor method to initialize the driver and wait
 	 */
 	public MainBoardPage() {
 		driver = SeleniumDriverManager.getManager().getDriver();
@@ -42,39 +42,71 @@ public class MainBoardPage {
 	/**
 	 * Add players to project methods
 	 */
-	public void clickAddPlayerBtn() {		//This method click on add player button to open player panel
+	public void addPlayer(String playerEmail, String playerRole) {
+		clickAddPlayerBtn();
+		setPlayerEmail(playerEmail);
+		setPlayerRol(playerRole);
+		clickSavePlayerBtn();
+	}
+	
+	/**
+	 * This method click on add player button to open player panel
+	 */
+	public void clickAddPlayerBtn() {		
 		wait.until(ExpectedConditions.visibilityOfElementLocated(addPlayerBtnLocator));
 		driver.findElement(addPlayerBtnLocator).click();
 	}
 
 	public void setPlayerEmail(String playerEmail) {
-		wait.until(ExpectedConditions.visibilityOfElementLocated(setPlayerEmailLocator));
-		driver.findElement(setPlayerEmailLocator).sendKeys(playerEmail);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(playerEmailTextBoxLocator));
+		driver.findElement(playerEmailTextBoxLocator).sendKeys(playerEmail);
 	}
 
 	public void setPlayerRol (String playerRole) {
 		driver.findElement(playerRoleComboBoxLocator).sendKeys(playerRole);
 	}
 
-	public void clickSavePlayerBtn() {		//This method click on add player button to save the player in project
+	/**
+	 * This method click on add player button to save the player in project
+	 */
+	public void clickSavePlayerBtn() {		
 		driver.findElement(savePlayerBtnLocator).click();
 		driver.navigate().refresh();
 	}
 
 	/**
+	 * Delete PLayers
+	 */
+	public void deletePlayer() {
+		expandPlayer();
+		clickDeletePlayer();
+		clickYesPopupBtn();
+	}
+
+	public void clickDeletePlayer() {
+		wait.until(ExpectedConditions.visibilityOfElementLocated(deletePlayerBtnLocator));
+		driver.findElement(deletePlayerBtnLocator).click();
+	}
+
+	public void expandPlayer() {
+		wait.until(ExpectedConditions.visibilityOfElementLocated(expandPlayerBtnLocator));
+		driver.findElement(expandPlayerBtnLocator).click();
+	}
+	
+	/**
 	 * Create User Story methods
 	 * @param userStoryTitle
 	 */
 	public void createNewUserStory(String userStoryTitle) {
-		wait.until(ExpectedConditions.visibilityOfElementLocated(addUserStoryBtnLocator));
+		wait.until(ExpectedConditions.visibilityOfElementLocated(userStoryAddBtnLocator));
 		clickAddStoryButton();
 		setUserStoryTitle(userStoryTitle);
 		clickSaveUserStoryButton();
 	}
 
 	public void clickAddStoryButton() {
-		wait.until(ExpectedConditions.visibilityOfElementLocated(addUserStoryBtnLocator));
-		driver.findElement(addUserStoryBtnLocator).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(userStoryAddBtnLocator));
+		driver.findElement(userStoryAddBtnLocator).click();
 	}
 
 	public void setUserStoryTitle(String userStoryTitle) {
@@ -83,8 +115,8 @@ public class MainBoardPage {
 	}
 
 	public void clickSaveUserStoryButton() {
-		wait.until(ExpectedConditions.visibilityOfElementLocated(saveUserStoryBtnLocator));
-		driver.findElement(saveUserStoryBtnLocator).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(userStorySaveBtnLocator));
+		driver.findElement(userStorySaveBtnLocator).click();
 	}
 
 	/**
@@ -99,11 +131,11 @@ public class MainBoardPage {
 	}		
 
 	public void clickExpandUserStoryButton(){
-		driver.findElement(expandUserStoryBtnLocator).click();
+		driver.findElement(userStoryExpandBtnLocator).click();
 	}
 
 	public void clickDeleteUserStoryButton(){
-		driver.findElement(deleteUserStoryBtnLocator).click();
+		driver.findElement(userStoryDeleteBtnLocator).click();
 	}	
 
 	public void clickYesPopupBtn(){
@@ -128,12 +160,12 @@ public class MainBoardPage {
 		clickAddTaskButton();
 	}
 	public void setTaskForUserStory(String tasks) {
-		driver.findElement(taskFieldInUserStoryLocator).sendKeys(tasks);
+		driver.findElement(taskDescriptionTextBoxLocator).sendKeys(tasks);
 	}	
 
 	public void clickAddTaskButton() {
-		wait.until(ExpectedConditions.visibilityOfElementLocated(addTaskBtnLocator));
-		driver.findElement(addTaskBtnLocator).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(taskAddBtnLocator));
+		driver.findElement(taskAddBtnLocator).click();
 	}	
 
 	/**\

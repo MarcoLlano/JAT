@@ -5,21 +5,21 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import common.SeleniumDriverManager;
+
 /**
- * 
- * @author marco llano
  * This is the page where users will administrate Projects.
+ * @author marco llano
+ * 
  */
 public class DashboardPage {
 	WebDriver driver;
 	WebDriverWait wait;	
-	By emailNameLocator = By.xpath("//ul/span[@title='email']");
 	By newProjectBtnLocator = By.xpath("//div[2]/button");
-	By deleteProjectLocator = By.xpath("//table/tbody/tr[1]/td[7]/div/a");
+	By deleteProjectBtnLocator = By.xpath("//table/tbody/tr[1]/td[7]/div/a");
 	By popupYesBtnLocator = By.xpath(".//*[@id='button-0']");
 
 	/**
-	 * Constructor method
+	 * Constructor method to initialize the driver and wait
 	 */
 	public DashboardPage() {
 		driver = SeleniumDriverManager.getManager().getDriver();
@@ -29,14 +29,14 @@ public class DashboardPage {
 	/**
 	 * Create new project method
 	 */
-	public NewProjectPage clickNewProjectButton(String title) {	    
+	public NewProjectPage clickNewProjectButton() {	    
 		wait.until(ExpectedConditions.visibilityOfElementLocated(newProjectBtnLocator));
 		driver.findElement(newProjectBtnLocator).click();;
-		return new NewProjectPage(title);
+		return new NewProjectPage();
 	}
 
 	/**
-	 * Delete project method
+	 * Below the methods to delete project 
 	 */
 	public void deleteProject() {
 		clickDeleteProject();
@@ -44,8 +44,8 @@ public class DashboardPage {
 	}
 
 	public void clickDeleteProject() {
-		wait.until(ExpectedConditions.visibilityOfElementLocated(deleteProjectLocator));
-		driver.findElement(deleteProjectLocator).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(deleteProjectBtnLocator));
+		driver.findElement(deleteProjectBtnLocator).click();
 	}
 
 	public void clickPopupYesButton() {

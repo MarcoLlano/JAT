@@ -3,7 +3,6 @@ package test;
 import org.junit.Assert;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.Test;
-
 import pages.MainBoardPage;
 import common.DataProviderClass;
 
@@ -13,8 +12,8 @@ import common.DataProviderClass;
  *
  */
 public class AddPlayerToProject {
-
 	MainBoardPage mainboard = new MainBoardPage();
+	
 	/**
 	 * Verify that is able to add players to a project
 	 * @param playerEmail
@@ -22,10 +21,7 @@ public class AddPlayerToProject {
 	 */
 	@Test(dataProvider = "players",dataProviderClass = DataProviderClass.class)
 	public void createApplicant(String playerEmail,String playerRole) {
-		mainboard.clickAddPlayerBtn();
-		mainboard.setPlayerEmail(playerEmail);
-		mainboard.setPlayerRol(playerRole);
-		mainboard.clickSavePlayerBtn();
+		mainboard.addPlayer(playerEmail, playerRole);
 		Assert.assertTrue(mainboard.getPlayerFromProject(playerEmail).contains(playerEmail));
 	}
 

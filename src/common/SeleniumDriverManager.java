@@ -1,9 +1,4 @@
-/*
- *
- */
-
 package common;
-
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -27,7 +22,7 @@ public class SeleniumDriverManager
 	}
 
 	/**
-	 * Select a browser
+	 * Initialize the firefox driver and the implicitlyWait
 	 */
 	private void initializeDriver()
 	{
@@ -59,13 +54,13 @@ public class SeleniumDriverManager
 	}
 
 	/**
-	 * Set to null the webdriver
+	 * Close the Web Page, return null if fails
 	 */
 	public void quitDriver() {    	
 		try {
 			driver.quit();
 		} catch (Exception e) {
-			//Logger.getLogger(getClass()).error("Unable to quit the webdriver" , e);
+			
 		}
 		driver = null;
 	}

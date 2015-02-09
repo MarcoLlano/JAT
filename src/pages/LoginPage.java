@@ -5,22 +5,23 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import common.SeleniumDriverManager;
+
 /**
- * 
- * @author marco llano
  * This is the page where users need to pass alwais to login JAT
+ * @author marco llano
+ * 
  */
 public class LoginPage {
 	WebDriver 		driver;
 	WebDriverWait 	wait;	
-	By emailFieldLocator = By.xpath("//input[@type='text']");
-	By passwordFieldLocator = By.xpath("//input[@type='password']");
+	By emailTextBoxLocator = By.xpath("//input[@type='text']");
+	By passwordTextBoxLocator = By.xpath("//input[@type='password']");
 	By signInBtnLocator = By.xpath("//input[@value='Sign in']");
 	By displayLogoutBtnLocator = By.xpath("//div/span");
 	By logoutBtnLocator = By.xpath("//a[contains(text(),'Logout')]");
 
 	/**
-	 * Constructor method
+	 * Constructor method to initizalize driver, wait and get the URL from page
 	 */
 	public LoginPage() {
 		driver = SeleniumDriverManager.getManager().getDriver();
@@ -29,7 +30,10 @@ public class LoginPage {
 	}
 
 	/**
-	 * Login to JAT
+	 * Below the methods to Login into JAT
+	 * @param email = userName
+	 * @param password
+	 * @return
 	 */
 	public DashboardPage loginJAT(String email,String password) {
 		setEmailAddress(email);
@@ -38,15 +42,15 @@ public class LoginPage {
 	}
 
 	public void setEmailAddress(String email) {
-		wait.until(ExpectedConditions.visibilityOfElementLocated(emailFieldLocator));
-		driver.findElement(emailFieldLocator).clear();
-		driver.findElement(emailFieldLocator).sendKeys(email);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(emailTextBoxLocator));
+		driver.findElement(emailTextBoxLocator).clear();
+		driver.findElement(emailTextBoxLocator).sendKeys(email);
 	}
 
 	public void setEmailPassword(String password) {
-		wait.until(ExpectedConditions.visibilityOfElementLocated(emailFieldLocator));
-		driver.findElement(passwordFieldLocator).clear();
-		driver.findElement(passwordFieldLocator).sendKeys(password);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(emailTextBoxLocator));
+		driver.findElement(passwordTextBoxLocator).clear();
+		driver.findElement(passwordTextBoxLocator).sendKeys(password);
 	}
 
 	public DashboardPage clickSignInButton() {
@@ -55,7 +59,7 @@ public class LoginPage {
 	}
 
 	/**
-	 * Logout and quit from JAT
+	 * Below the methods to Logout and quit from JAT
 	 */
 	public void logoutJAT() {
 		clickDisplayLogoutButton();

@@ -2,9 +2,10 @@ package test;
 
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
-
 import pages.DashboardPage;
 import pages.LoginPage;
+import pages.NewProjectPage;
+
 /**
  * 
  * @author marco llano
@@ -13,6 +14,7 @@ import pages.LoginPage;
 public class FeatureSuiteSetup {
 	LoginPage login = new LoginPage();
 	DashboardPage dashboard = new DashboardPage();
+	NewProjectPage newProject;
 
 	@BeforeSuite
 	public void beforeSuite() {
@@ -20,7 +22,8 @@ public class FeatureSuiteSetup {
 		String password = "Marco.Llano";
 		String title="automationTest";		
 		login.loginJAT(email,password);
-		dashboard.clickNewProjectButton(title);
+		newProject = dashboard.clickNewProjectButton();
+		newProject.createNewProject(title);
 	}
 	@AfterSuite
 	public void afterSuite() {	

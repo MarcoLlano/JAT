@@ -6,8 +6,9 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import pages.MainBoardPage;
+
 /**
- * 
+ * This test implement the data provider method with task for user stories
  * @author marco llano
  *
  */
@@ -21,25 +22,17 @@ public class CreateTasksForUserStories {
 	@DataProvider(name = "tasksForUserStory")
 	public Object[][] createData1() {
 		return new Object[][] {
-				{ 
-					"Task 1",        
-					"Task 2",
-					"Task 3",
-					"Task 4"
-				} 
+				{"Task 1"},        
+				{"Task 2"},
+				{"Task 3"},
+				{"Task 4"} 
 		};
 	}
 
 	@Test(dataProvider = "tasksForUserStory")
-	public void verifyThatUserStoryStoreTasks(String task1, String task2, String task3, String task4) {
-		mainBoard.addTask(task1);
-		mainBoard.addTask(task2);
-		mainBoard.addTask(task3);
-		mainBoard.addTask(task4);	
-		Assert.assertTrue(mainBoard.getTasksFromUserStory(task1).contains(task1));
-		Assert.assertTrue(mainBoard.getTasksFromUserStory(task2).contains(task2));
-		Assert.assertTrue(mainBoard.getTasksFromUserStory(task3).contains(task3));
-		Assert.assertTrue(mainBoard.getTasksFromUserStory(task4).contains(task4));
+	public void verifyThatUserStoryStoreTasks(String task) {
+		mainBoard.addTask(task);	
+		Assert.assertTrue(mainBoard.getTasksFromUserStory(task).contains(task));
 	}
 
 	@BeforeMethod
