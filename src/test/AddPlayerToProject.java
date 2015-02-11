@@ -3,13 +3,12 @@ package test;
 import org.junit.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
-
 import pages.MainBoardPage;
 import common.DataProviderClass;
 
 /**
  * Title: Register new applicant-JagdPanther allows create new applicants
- * @author marco llano
+ * @author Marco Llano
  *
  */
 public class AddPlayerToProject {

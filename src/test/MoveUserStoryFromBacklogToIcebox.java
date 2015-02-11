@@ -8,7 +8,7 @@ import pages.MainBoardPage;
 
 /**
  * 
- * @author marco llano
+ * @author Marco Llano
  *
  */
 public class MoveUserStoryFromBacklogToIcebox {	

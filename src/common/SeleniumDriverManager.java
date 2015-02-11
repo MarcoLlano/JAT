@@ -7,7 +7,7 @@ import java.util.concurrent.TimeUnit;
 
 /**
  * 
- * @author marco llano
+ * @author Marco Llano
  * Manages the web browser
  */
 public class SeleniumDriverManager

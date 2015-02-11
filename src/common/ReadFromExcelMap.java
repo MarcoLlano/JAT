@@ -7,7 +7,7 @@ import jxl.*;
 import jxl.read.biff.BiffException;
 
 /**
- * @author marco llano
+ * @author Marco Llano
  *
  */
 public class ReadFromExcelMap {

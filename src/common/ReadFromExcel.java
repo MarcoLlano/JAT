@@ -11,7 +11,7 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 /**
  *This class read all files in excel file then save it to memory for further use
- * @author marco llano
+ * @author Marco Llano
  *
  */
 public class ReadFromExcel {	

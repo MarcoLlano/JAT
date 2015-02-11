@@ -13,7 +13,7 @@ import common.ReadFromExcelMap;
 
 /**
  * 
- * @author marco llano
+ * @author Marco Llano
  *
  */
 public class FeatureSuiteSetup {
