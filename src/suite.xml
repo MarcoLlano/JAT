@@ -5,8 +5,9 @@
     	<class name="test.FeatureSuiteSetup"/>  
       	<class name="test.MoveUserStoryFromBacklogToIcebox"/>
       	<class name="test.MoveUserStoryFromIceboxToBacklog"/>  
-      	<class name="test.CreateTasksForUserStories"/>        	    	
+      	<class name="test.CreateTasksForUserStories"/>   	    	
     	 <class name="test.AddPlayerToProject"/>  
+    	<class name="test.SearchUserStory"/>  
     </classes>
   </test> <!-- Test -->
 </suite> <!-- Suite -->

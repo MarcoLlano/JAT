@@ -8,6 +8,7 @@ public class DataProviderClass {
 	//update filepath to the path you will place the excl file, otherwise will not work
 	private static String filePath = "C:\\Users\\Marco Llano\\workspace\\testJalaAgileTrackerProject\\src\\excelFiles";
 	private static String fileName = "players.xlsx";
+	private static String sheetName = "Players";
 	private static ReadFromExcel objExcelFile;
 
 	/**
@@ -17,6 +18,6 @@ public class DataProviderClass {
 	@DataProvider(name = "players")
 	public static Object[][] programData() throws IOException {
 		objExcelFile = new ReadFromExcel();
-		return objExcelFile.readExcel(filePath,fileName,"Players");
+		return objExcelFile.readExcel(filePath,fileName,sheetName);
 	}
 }

@@ -7,8 +7,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import common.SeleniumDriverManager;
 
 /**
- * This is the page where users need to pass alwais to login JAT
- * @author marco llano
+ * This is the page to login into JAT
+ * @author Marco Llano
  * 
  */
 public class LoginPage {
@@ -21,7 +21,7 @@ public class LoginPage {
 	By logoutBtnLocator = By.xpath("//a[contains(text(),'Logout')]");
 
 	/**
-	 * Constructor method to initizalize driver, wait and get the URL from page
+	 * Constructor method to initialize driver, wait and get the URL from page
 	 */
 	public LoginPage() {
 		driver = SeleniumDriverManager.getManager().getDriver();

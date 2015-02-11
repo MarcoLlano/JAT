@@ -8,8 +8,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import common.SeleniumDriverManager;
 
 /**
- * This is the page where all the User Stories will be, that's why it calls Main.
- * @author marco llano
+ * This is the page where all the User Stories will be manage.
+ * @author Marco Llano
  * 
  */
 public class MainBoardPage {
@@ -28,8 +28,10 @@ public class MainBoardPage {
 	By playerEmailTextBoxLocator = By.xpath("//input[@id='player-emailPlayer']"); 
 	By playerRoleComboBoxLocator = By.xpath("//div[@id='addPlayer']/div/form/div[2]/select");
 	By savePlayerBtnLocator = By.xpath("//button[@type='submit']");
-	By expandPlayerBtnLocator = By.xpath("//div[@id='accordion2']/div/div/div");
-	By deletePlayerBtnLocator = By.xpath("//div[3]/div/div[2]/div/div[3]");
+	By expandPlayerLayoutBtnLocator = By.xpath("//div[6]/div/div/div[2]/div[4]/div/div[1]/div[1]");
+	By deletePlayerBtnLocator = By.xpath("//div[4]/div/div[2]/div/div[3]");
+	By searchUserStoryTextBoxLocator = By.xpath("//input[@id='word-search-uss']");
+	By searchUserStoryButtonLocator = By.xpath("//button[@type='button']");
 
 	/**
 	 * Constructor method to initialize the driver and wait
@@ -50,7 +52,7 @@ public class MainBoardPage {
 	}
 	
 	/**
-	 * This method click on add player button to open player panel
+	 * Methods to add players
 	 */
 	public void clickAddPlayerBtn() {		
 		wait.until(ExpectedConditions.visibilityOfElementLocated(addPlayerBtnLocator));
@@ -78,19 +80,19 @@ public class MainBoardPage {
 	 * Delete PLayers
 	 */
 	public void deletePlayer() {
-		expandPlayer();
+		expandPlayerLayout();
 		clickDeletePlayer();
 		clickYesPopupBtn();
 	}
 
 	public void clickDeletePlayer() {
-		wait.until(ExpectedConditions.visibilityOfElementLocated(deletePlayerBtnLocator));
+		//wait.until(ExpectedConditions.visibilityOfElementLocated(deletePlayerBtnLocator));
 		driver.findElement(deletePlayerBtnLocator).click();
 	}
 
-	public void expandPlayer() {
-		wait.until(ExpectedConditions.visibilityOfElementLocated(expandPlayerBtnLocator));
-		driver.findElement(expandPlayerBtnLocator).click();
+	public void expandPlayerLayout() {
+		wait.until(ExpectedConditions.visibilityOfElementLocated(expandPlayerLayoutBtnLocator));
+		driver.findElement(expandPlayerLayoutBtnLocator).click();
 	}
 	
 	/**
@@ -118,6 +120,25 @@ public class MainBoardPage {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(userStorySaveBtnLocator));
 		driver.findElement(userStorySaveBtnLocator).click();
 	}
+	
+	/**
+	 * Methods for search user stories
+	 */
+	public String searchUserStory(String userStory) {
+		setUserStoryTitleInSearchTextBox(userStory);
+		clickSearchUserStoryButton();
+		return getUserStoryFromSearchResultPanel(userStory);
+	}
+	
+	public void setUserStoryTitleInSearchTextBox(String userStory) {
+		wait.until(ExpectedConditions.visibilityOfElementLocated(searchUserStoryTextBoxLocator));
+		driver.findElement(searchUserStoryTextBoxLocator).clear();
+		driver.findElement(searchUserStoryTextBoxLocator).sendKeys(userStory);
+	}
+	
+	public void clickSearchUserStoryButton() {
+		driver.findElement(searchUserStoryButtonLocator).click();
+	}	
 
 	/**
 	 * Delete user story methods
@@ -127,7 +148,7 @@ public class MainBoardPage {
 		clickExpandUserStoryButton();
 		clickDeleteUserStoryButton();
 		clickYesPopupBtn();
-		driver.navigate().refresh();
+		driver.navigate().refresh(); //have to refresh every time because the locator hidden, so to fix this I apply this method 
 	}		
 
 	public void clickExpandUserStoryButton(){
@@ -195,5 +216,12 @@ public class MainBoardPage {
 	 */
 	public String getPlayerFromProject(String playerEmail) {
 		return driver.findElement(By.xpath("//div[@id='playersContent']/div/div[2]/descendant::*/div[contains(text(),'"+playerEmail+"')]")).getText();
+	}
+	
+	/**
+	 * Method to get user stories from the search result panel
+	 */
+	public String getUserStoryFromSearchResultPanel(String userStory) {
+		return driver.findElement(By.xpath("//div[8]/div/div/div[2]/descendant::*/div[contains(text(),'" + userStory + "')]")).getText();
 	}
 }

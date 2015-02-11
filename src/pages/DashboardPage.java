@@ -7,8 +7,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import common.SeleniumDriverManager;
 
 /**
- * This is the page where users will administrate Projects.
- * @author marco llano
+ * This is the page where users will manage their Projects.
+ * @author Marco Llano
  * 
  */
 public class DashboardPage {

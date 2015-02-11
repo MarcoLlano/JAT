@@ -14,8 +14,8 @@ import common.SeleniumDriverManager;
 public class NewProjectPage {
 	WebDriver driver;
 	WebDriverWait wait;
-	By setProjectTitleLocator = By.xpath(".//*[@id='newProjectForm']/div[1]/div[1]/div/input");
-	By clickSaveProjectButton = By.xpath(".//*[@id='newProjectForm']/div[2]/div/div/button[1]");
+	By projectTitleTextboxLocator = By.xpath(".//*[@id='newProjectForm']/div[1]/div[1]/div/input");
+	By saveProjectButtonLocator = By.xpath(".//*[@id='newProjectForm']/div[2]/div/div/button[1]");
 
 	/**
 	 * Constructor method to initialize the driver and wait
@@ -29,21 +29,19 @@ public class NewProjectPage {
 	 * Create new project methods
 	 */
 	public MainBoardPage createNewProject(String projectTitle){
-		wait.until(ExpectedConditions.visibilityOfElementLocated(setProjectTitleLocator));
+		wait.until(ExpectedConditions.visibilityOfElementLocated(projectTitleTextboxLocator));
 		setProjectTitle(projectTitle);
-		saveProjectButton();
-		return new MainBoardPage();
+		return clickSaveProjectButton();
 	}
 
-	public void setProjectTitle(String ProjectTitle){
-		wait.until(ExpectedConditions.visibilityOfElementLocated(setProjectTitleLocator));
-		String setProjectTitle = ProjectTitle;
-		driver.findElement(setProjectTitleLocator).sendKeys(setProjectTitle);
+	public void setProjectTitle(String projectTitle){
+		wait.until(ExpectedConditions.visibilityOfElementLocated(projectTitleTextboxLocator));
+		driver.findElement(projectTitleTextboxLocator).sendKeys(projectTitle);
 	}
 
-	public MainBoardPage saveProjectButton(){
-		wait.until(ExpectedConditions.visibilityOfElementLocated(setProjectTitleLocator));
-		driver.findElement(clickSaveProjectButton).click();
+	public MainBoardPage clickSaveProjectButton(){
+		wait.until(ExpectedConditions.visibilityOfElementLocated(projectTitleTextboxLocator));
+		driver.findElement(saveProjectButtonLocator).click();
 		return new MainBoardPage();
 	}
 }
