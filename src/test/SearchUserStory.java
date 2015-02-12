@@ -10,11 +10,11 @@ import java.util.Map;
 import jxl.read.biff.BiffException;
 
 import org.junit.Assert;
-import org.testng.annotations.AfterTest;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
 
-import common.ReadFromExcelMap;
 import pages.MainBoardPage;
+import utils.ReadFromExcelMap;
 
 /**
  * @author Marco Llano
@@ -40,8 +40,8 @@ public class SearchUserStory {
 		}
 	}
 
-	@AfterTest
-	public void afterTest() {
-		mainBoard.clickDashboardButton();
+	@AfterMethod
+	public void afterMethod() {
+		mainBoard.refreshPageMethod();
 	}
 }

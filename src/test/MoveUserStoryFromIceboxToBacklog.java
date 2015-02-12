@@ -35,7 +35,7 @@ public class MoveUserStoryFromIceboxToBacklog {
 
 	@AfterMethod
 	public void afterTest() {
-		mainBoard.deleteUserStory();
+		//mainBoard.deleteUserStory();
 	}
 
 }

@@ -1,0 +1,9 @@
+<configuration>
+	<credentials>
+		<userEmail>Marco.Llano@fundacion-jala.org</userEmail>
+		<password>Marco.Llano</password>
+	</credentials>	
+	<URL>
+		<url>http://172.20.8.22:3001/#/signin</url>
+	</URL>
+</configuration>

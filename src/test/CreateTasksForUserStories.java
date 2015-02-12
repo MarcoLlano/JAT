@@ -44,7 +44,7 @@ public class CreateTasksForUserStories {
 	@AfterMethod
 	public void afterTest() {		
 		mainBoard.clickSaveUserStoryButton();
-		mainBoard.deleteUserStory();
+		//mainBoard.deleteUserStory();
 		//mainBoard.clickDashboardButton();		//*This code line is needed in the last TC of suite.xml to finish execution*//
 	}
 

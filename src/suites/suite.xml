@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<suite name="Jala Agile Tracker">
+  <test name="Testing User Stories">
+    <classes>
+    	<class name="test.FeatureSuiteSetup"/>  
+      	<class name="test.MoveUserStoryFromBacklogToIcebox"/>
+      	<class name="test.MoveUserStoryFromIceboxToBacklog"/>  
+      	<class name="test.CreateTasksForUserStories"/> 
+    	<class name="test.SearchUserStory"/>  
+    </classes>
+  </test> <!-- Test -->
+  <test name="Testing Players">
+    <classes>   	    	
+    	 <class name="test.AddPlayerToProject"/>
+    </classes>
+  </test> <!-- Test -->
+</suite> <!-- Suite -->

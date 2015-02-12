@@ -5,7 +5,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import common.SeleniumDriverManager;
+
+import selenium.SeleniumDriverManager;
 
 /**
  * This is the page where all the User Stories will be manage.
@@ -39,6 +40,13 @@ public class MainBoardPage {
 	public MainBoardPage() {
 		driver = SeleniumDriverManager.getManager().getDriver();
 		wait = SeleniumDriverManager.getManager().getWait();
+	}
+	
+	/**
+	 * Refresh the page method to workaround some issues in the running
+	 */
+	public void refreshPageMethod() {
+		driver.navigate().refresh();
 	}
 
 	/**
@@ -148,7 +156,7 @@ public class MainBoardPage {
 		clickExpandUserStoryButton();
 		clickDeleteUserStoryButton();
 		clickYesPopupBtn();
-		driver.navigate().refresh(); //have to refresh every time because the locator hidden, so to fix this I apply this method 
+		refreshPageMethod();		 
 	}		
 
 	public void clickExpandUserStoryButton(){
