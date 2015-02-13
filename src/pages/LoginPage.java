@@ -4,7 +4,6 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-
 import selenium.SeleniumDriverManager;
 
 /**
@@ -14,20 +13,20 @@ import selenium.SeleniumDriverManager;
  */
 public class LoginPage {
 	WebDriver 		driver;
-	WebDriverWait 	wait;	
+	WebDriverWait 	wait;		
 	By emailTextBoxLocator = By.xpath("//input[@type='text']");
 	By passwordTextBoxLocator = By.xpath("//input[@type='password']");
 	By signInBtnLocator = By.xpath("//input[@value='Sign in']");
-	By displayLogoutBtnLocator = By.xpath("//div/span");
+	By displayLogoutBtnLocator = By.xpath("//div[1]/div[1]/div/div/ul/div[1]");
 	By logoutBtnLocator = By.xpath("//a[contains(text(),'Logout')]");
 
 	/**
 	 * Constructor method to initialize driver, wait and get the URL from page
 	 */
-	public LoginPage() {
+	public LoginPage(String jatURL) {
 		driver = SeleniumDriverManager.getManager().getDriver();
 		wait = SeleniumDriverManager.getManager().getWait();
-		driver.get("http://172.20.8.22:3001/#/signin");
+		driver.get(jatURL);
 	}
 
 	/**
@@ -58,6 +57,13 @@ public class LoginPage {
 		driver.findElement(signInBtnLocator).click();
 		return new DashboardPage();
 	}
+	
+	/**
+	 * method to close the window
+	 */
+	public void closeBrowser() {
+		driver.quit();
+	}
 
 	/**
 	 * Below the methods to Logout and quit from JAT
@@ -65,7 +71,6 @@ public class LoginPage {
 	public void logoutJAT() {
 		clickDisplayLogoutButton();
 		clickOnLogoutButton();
-		driver.quit();
 	}
 
 	public void clickDisplayLogoutButton() {

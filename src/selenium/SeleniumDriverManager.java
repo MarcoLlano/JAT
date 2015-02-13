@@ -2,7 +2,8 @@ package selenium;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.openqa.selenium.firefox.FirefoxDriver;
+import utils.ReadFromXML;
+
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -15,18 +16,25 @@ public class SeleniumDriverManager
 	private static SeleniumDriverManager manager = null;
 	private WebDriver driver;
 	private WebDriverWait wait;
-
+	String xmlFilePath = (System.getProperty("user.dir") + "\\src\\xmlFiles\\config.xml");
+	public ReadFromXML xmlFile = new ReadFromXML(xmlFilePath);
+	
 	protected SeleniumDriverManager()
 	{
 		initializeDriver();
 	}
 
 	/**
-	 * Initialize the firefox driver and the implicitlyWait
+	 * Initialize the browser driver and the implicitlyWait
 	 */
 	private void initializeDriver()
 	{
-		driver = new FirefoxDriver();
+		browserDrivers bDriver = new browserDrivers();
+		String node = "drivers";
+		String driverName = "driver";
+		String browserDriver = xmlFile.read(node, driverName);
+		driver = bDriver.browserDriver(browserDriver);
+		//driver = new FirefoxDriver();
 		driver.manage().window().maximize();
 		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 		driver.manage().timeouts().pageLoadTimeout(30, TimeUnit.SECONDS);

@@ -2,11 +2,13 @@ package test;
 
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
+
 import pages.DashboardPage;
 import pages.LoginPage;
 import pages.NewProjectPage;
 import utils.ReadFromExcelMap;
 import utils.ReadFromXML;
+
 import java.io.IOException;
 import java.util.List;
 import java.util.Map;
@@ -19,12 +21,15 @@ import jxl.read.biff.BiffException;
  *
  */
 public class FeatureSuiteSetup {
-	LoginPage login = new LoginPage();
+	String node = "webSite";
+	String url = "url";	
 	DashboardPage dashboard = new DashboardPage();
 	NewProjectPage newProject;
 	ReadFromExcelMap xlsFile;	
 	String xmlFilePath = (System.getProperty("user.dir") + "\\src\\xmlFiles\\config.xml");
 	public ReadFromXML xmlFile = new ReadFromXML(xmlFilePath);
+	String jatURL = xmlFile.read(node, url);
+	LoginPage login = new LoginPage(jatURL);
 
 	@BeforeSuite
 	public void beforeSuite() throws BiffException, IOException {
@@ -38,16 +43,14 @@ public class FeatureSuiteSetup {
 		login.loginJAT(email,password);
 		newProject = dashboard.clickNewProjectButton();
 		String sheetName = "Projects";
-		List<Map<String, String>> project = xlsFile.readFromExcel(excelFilepath, sheetName);
-	
-		System.out.print(project.get(0).get("Title"));
-		
+		List<Map<String, String>> project = xlsFile.readFromExcel(excelFilepath, sheetName);	
 		newProject.createNewProject(project.get(0).get("Title"));
 	}
 	@AfterSuite
 	public void afterSuite() {	
 		dashboard.deleteProject();
-		login.logoutJAT();		
+		login.logoutJAT();	
+		login.closeBrowser();
 	}
 
 }
