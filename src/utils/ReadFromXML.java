@@ -10,6 +10,7 @@ import org.w3c.dom.NodeList;
 
 public class ReadFromXML {
 	public static Document doc;
+	
 	public ReadFromXML(String path){
 		try {
 			File fXmlFile = new File(path);
@@ -22,8 +23,9 @@ public class ReadFromXML {
 			e.printStackTrace();
 		}
 	}
+	
 	public String read(String node, String element){
-		String elem=null;
+		String elem = null;
 		NodeList nList = doc.getElementsByTagName(node);
 		Node nNode = nList.item(nList.getLength() - 1);
 		if (nNode.getNodeType() == Node.ELEMENT_NODE) {

@@ -1,6 +1,3 @@
-/**
- * 
- */
 package selenium;
 
 import org.openqa.selenium.WebDriver;
@@ -11,7 +8,7 @@ import org.openqa.selenium.firefox.FirefoxDriver;
  * @author Marco Llano
  *
  */
-public class browserDrivers {
+public class BrowserDrivers {
 	private WebDriver driver;
 	public WebDriver browserDriver(String driverName) {
 		switch (driverName) {

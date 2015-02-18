@@ -18,7 +18,7 @@ public class MoveUserStoryFromIceboxToBacklog {
 	String target = "backlog";
 
 	/**
-	 * Verify that a user story is able to move from Icebox to Backlog
+	 * Verify that a user story can be moved from Icebox to Backlog panel
 	 */
 	@Test
 	public void verifyDragAndDropIceboxToBacklog() {

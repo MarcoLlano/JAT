@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<suite name="Testing players">
+  <test name="Testing User Stories">
+    <classes>
+    	<class name="test.FeatureSuiteSetup"/>   	    	
+    	<class name="test.AddPlayerToProject"/>
+    </classes>
+  </test> <!-- Test -->
+</suite> <!-- Suite -->

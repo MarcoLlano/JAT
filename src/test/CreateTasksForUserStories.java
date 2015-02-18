@@ -17,7 +17,7 @@ public class CreateTasksForUserStories {
 	String userStoryTitle="automationTest";
 
 	/**
-	 * Verify that a user story store tasks
+	 * Verify that a user story can store tasks
 	 */
 	@DataProvider(name = "tasksForUserStory")
 	public Object[][] createData1() {

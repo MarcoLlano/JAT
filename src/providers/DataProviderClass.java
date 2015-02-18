@@ -1,9 +1,7 @@
 package providers;
 
 import org.testng.annotations.DataProvider;
-
 import utils.ReadFromExcel;
-
 import java.io.IOException;
 
 /**
@@ -14,7 +12,7 @@ import java.io.IOException;
 public class DataProviderClass {
 	
 	//update filepath to the path you will place the Excel file, otherwise will not work
-	private static String filePath = "C:\\Users\\Marco Llano\\workspace\\testJalaAgileTrackerProject\\src\\excelFiles";
+	private static String filePath = System.getProperty("user.dir") + "\\src\\excelFiles";
 	private static String fileName = "players.xlsx";
 	private static String sheetName = "Players";
 	private static ReadFromExcel objExcelFile;

@@ -5,7 +5,6 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-
 import selenium.SeleniumDriverManager;
 
 /**
@@ -81,7 +80,7 @@ public class MainBoardPage {
 	 */
 	public void clickSavePlayerBtn() {		
 		driver.findElement(savePlayerBtnLocator).click();
-		driver.navigate().refresh();
+		driver.navigate().refresh();	//comment this code line for chrome
 	}
 
 	/**
@@ -94,7 +93,6 @@ public class MainBoardPage {
 	}
 
 	public void clickDeletePlayer() {
-		//wait.until(ExpectedConditions.visibilityOfElementLocated(deletePlayerBtnLocator));
 		driver.findElement(deletePlayerBtnLocator).click();
 	}
 
